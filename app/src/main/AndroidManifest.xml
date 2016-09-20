@@ -122,7 +122,10 @@
         </receiver>
 
         <activity android:name=".view.ECContactListActivity" />
-        <activity android:name=".view.ECConversationActivity"></activity>
+        <activity android:name=".view.ECConversationActivity" />
+        <activity android:name=".view.GroupsActivity" />
+        <activity android:name=".view.ECNewGroupActivity"></activity>
+        <activity android:name=".view.GroupPickContactsActivity"></activity>
     </application>
 
 </manifest>

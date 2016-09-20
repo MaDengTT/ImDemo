@@ -61,7 +61,7 @@ import java.util.UUID;
 
 public class DemoHelper {
     /**
-     * data sync listener
+     * 数据同步Listener
      */
     public interface DataSyncListener {
         /**
@@ -80,26 +80,30 @@ public class DemoHelper {
      */
     protected EMMessageListener messageListener = null;
 
+    //联系人
 	private Map<String, EaseUser> contactList;
-
+    //机器人用户
 	private Map<String, RobotUser> robotList;
-
+    //用户数据管理类
 	private UserProfileManager userProManager;
-
+    //单例模式
 	private static DemoHelper instance = null;
-	
+	//model类
 	private DemoModel demoModel = null;
 	
 	/**
      * sync groups status listener
+     * 组同步监听器
      */
     private List<DataSyncListener> syncGroupsListeners;
     /**
      * sync contacts status listener
+     * 联系人同步监听器
      */
     private List<DataSyncListener> syncContactsListeners;
     /**
      * sync blacklist status listener
+     * 黑名单同步监听器
      */
     private List<DataSyncListener> syncBlackListListeners;
 
@@ -109,19 +113,25 @@ public class DemoHelper {
     private boolean isGroupsSyncedWithServer = false;
     private boolean isContactsSyncedWithServer = false;
     private boolean isBlackListSyncedWithServer = false;
-	
+
+    //电话和视频
 	public boolean isVoiceCalling;
     public boolean isVideoCalling;
 
+    //用户名
 	private String username;
 
+    //上下文对象
     private Context appContext;
 
 //    private CallReceiver callReceiver;
 
+    //Message Dao
     private InviteMessgeDao inviteMessgeDao;
+    //用户 Dao
     private UserDao userDao;
 
+    //Broadcast 管理器
     private LocalBroadcastManager broadcastManager;
 
     private boolean isGroupAndContactListenerRegisted;
@@ -150,20 +160,22 @@ public class DemoHelper {
 		if (EaseUI.getInstance().init(context, options)) {
 		    appContext = context;
 		    
-		    //debug mode, you'd better set it to false, if you want release your App officially.
+		    //开启Debug 模式，打包时关闭
 		    EMClient.getInstance().setDebugMode(true);
-		    //get easeui instance
+		    //获得 easeui instance
 		    easeUI = EaseUI.getInstance();
-		    //to set user's profile and avatar
+		    //头像、相关 EaseUI 配置
 		    setEaseUIProviders();
-			//initialize preference manager
+			//偏好设置 设置管理器
 			PreferenceManager.init(context);
-			//initialize profile manager
+			//initialize profile manager 初始化文件管理器
 			getUserProfileManager().init(context);
-			
-			EMClient.getInstance().callManager().getVideoCallHelper().setAdaptiveVideoFlag(getModel().isAdaptiveVideoEncode());
-
+			//视屏通话组件监听
+//			EMClient.getInstance().callManager().getVideoCallHelper().setAdaptiveVideoFlag(getModel().isAdaptiveVideoEncode());
+            //设置全局监听 ，联系人、消息
 			setGlobalListeners();
+
+            //初始化 broadcast管理器以及数据库
 			broadcastManager = LocalBroadcastManager.getInstance(appContext);
 	        initDbDao();
 		}
@@ -298,7 +310,7 @@ public class DemoHelper {
             
             @Override
             public String getDisplayedText(EMMessage message) {
-            	// be used on notification bar, different text according the message type.
+            	// 在通知栏上使用，根据消息类型不同的文本
                 String ticker = EaseCommonUtils.getMessageDigest(message, appContext);
                 if(message.getType() == Type.TXT){
                     ticker = ticker.replaceAll("\\[.{2,3}\\]", "[表情]");

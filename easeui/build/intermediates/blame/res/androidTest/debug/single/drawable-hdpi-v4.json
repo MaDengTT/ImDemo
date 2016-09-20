@@ -308,12 +308,12 @@
         "source": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ee_35.png"
     },
     {
-        "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_type_select_btn_pressed.png",
-        "source": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_type_select_btn_pressed.png"
-    },
-    {
         "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ee_32.png",
         "source": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ee_32.png"
+    },
+    {
+        "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_type_select_btn_pressed.png",
+        "source": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_type_select_btn_pressed.png"
     },
     {
         "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_conversation_normal.png",
