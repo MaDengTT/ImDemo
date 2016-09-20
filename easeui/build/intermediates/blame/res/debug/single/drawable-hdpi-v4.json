@@ -196,12 +196,12 @@
         "source": "D:\\down\\ImDemo\\easeui\\src\\main\\res\\drawable-hdpi\\ease_video_recorder_stop_btn.png"
     },
     {
-        "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ee_30.png",
-        "source": "D:\\down\\ImDemo\\easeui\\src\\main\\res\\drawable-hdpi\\ee_30.png"
-    },
-    {
         "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_appitem_del_btn_normal.png",
         "source": "D:\\down\\ImDemo\\easeui\\src\\main\\res\\drawable-hdpi\\ease_appitem_del_btn_normal.png"
+    },
+    {
+        "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ee_30.png",
+        "source": "D:\\down\\ImDemo\\easeui\\src\\main\\res\\drawable-hdpi\\ee_30.png"
     },
     {
         "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_icon_marka.png",

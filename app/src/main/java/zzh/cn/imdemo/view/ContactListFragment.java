@@ -7,7 +7,9 @@ import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +39,9 @@ import java.util.List;
 import java.util.Map;
 
 import zzh.cn.imdemo.R;
+import zzh.cn.imdemo.app.DemoHelper;
 import zzh.cn.imdemo.db.InviteMessgeDao;
+import zzh.cn.imdemo.db.UserDao;
 
 /**
  * Created by Administrator on 2016/9/19.
@@ -110,11 +114,13 @@ public class ContactListFragment extends EaseBaseFragment {
         clearSearch = (ImageButton) getView().findViewById(R.id.search_clear);
         ivBack = (ImageView) getView().findViewById(R.id.iv_back_contact);
         ivBack.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 getActivity().finish();
             }
         });
+        registerForContextMenu(listView);
     }
 
     /**
@@ -188,6 +194,76 @@ public class ContactListFragment extends EaseBaseFragment {
 
 
     @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        toBeProcessUser = (EaseUser) listView.getItemAtPosition(((AdapterView.AdapterContextMenuInfo) menuInfo).position);
+        toBeProcessUsername = toBeProcessUser.getUsername();
+        getActivity().getMenuInflater().inflate(R.menu.em_context_contact_list, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.delete_contact) {
+            try {
+                // delete contact
+                deleteContact(toBeProcessUser);
+                // remove invitation message
+                InviteMessgeDao dao = new InviteMessgeDao(getActivity());
+                dao.deleteMessage(toBeProcessUser.getUsername());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return true;
+        }else if(item.getItemId() == R.id.add_to_blacklist){
+            moveToBlacklist(toBeProcessUsername);
+            return true;
+        }
+        return super.onContextItemSelected(item);
+    }
+
+    /**
+     * 删除联系人
+     * @param tobeDeleteUser
+     */
+    public void deleteContact(final EaseUser tobeDeleteUser) {
+        String st1 = getResources().getString(R.string.deleting);
+        final String st2 = getResources().getString(R.string.Delete_failed);
+        final ProgressDialog pd = new ProgressDialog(getActivity());
+        pd.setMessage(st1);
+        pd.setCanceledOnTouchOutside(false);
+        pd.show();
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    EMClient.getInstance().contactManager().deleteContact(tobeDeleteUser.getUsername());
+                    // remove user from memory and database
+                    UserDao dao = new UserDao(getActivity());
+                    dao.deleteContact(tobeDeleteUser.getUsername());
+                    DemoHelper.getInstance().getContactList().remove(tobeDeleteUser.getUsername());
+                    getActivity().runOnUiThread(new Runnable() {
+                        public void run() {
+                            pd.dismiss();
+                            contactList.remove(tobeDeleteUser);
+                            contactListLayout.refresh();
+
+                        }
+                    });
+                } catch (final Exception e) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        public void run() {
+                            pd.dismiss();
+                            Toast.makeText(getActivity(), st2 + e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                }
+
+            }
+        }).start();
+
+    }
+
+    @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         this.hidden = hidden;
@@ -206,7 +282,7 @@ public class ContactListFragment extends EaseBaseFragment {
 
 
     /**
-     * move user to blacklist
+     * 移入黑名单
      */
     protected void moveToBlacklist(final String username){
         final ProgressDialog pd = new ProgressDialog(getActivity());
