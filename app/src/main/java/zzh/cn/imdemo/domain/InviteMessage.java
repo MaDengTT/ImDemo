@@ -98,27 +98,27 @@ public class InviteMessage {
 	public enum InviteMesageStatus{
 	    
 	    //==contact
-		/**being invited*/
+		/**被邀请*/
 		BEINVITEED,
-		/**being refused*/
+		/**被拒绝*/
 		BEREFUSED,
-		/**remote user already agreed*/
+		/**被同意*/
 		BEAGREED,
 		
 		//==group application
-		/**remote user apply to join*/
+		/**远程用户申请加入*/
 		BEAPPLYED,
-		/**you have agreed to join*/
+		/**你同意加入*/
 		AGREED,
-		/**you refused the join request*/
+		/**你拒绝了请求*/
 		REFUSED,
 		
 		//==group invitation
-		/**received remote user's invitation**/
+		/**收到群邀请**/
 		GROUPINVITATION,
-		/**remote user accept your invitation**/
+		/**用户接收邀请**/
 		GROUPINVITATION_ACCEPTED,
-        /**remote user declined your invitation**/
+        /**用户拒绝邀请**/
 		GROUPINVITATION_DECLINED
 	}
 	

@@ -13,5 +13,15 @@
         app:contactItemName="新的朋友"
         >
     </zzh.cn.imdemo.view.ContactItemView>
+    <zzh.cn.imdemo.view.ContactItemView
+        android:id="@+id/civ_groups"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contactItemImage="@drawable/em_groups_icon"
+        app:contactItemName="群聊"
+        >
+
+    </zzh.cn.imdemo.view.ContactItemView>
+
 
 </LinearLayout>

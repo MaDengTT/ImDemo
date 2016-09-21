@@ -29,9 +29,9 @@ import android.widget.TextView;
 
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMGroup;
-
 import com.hyphenate.easeui.adapter.EaseContactAdapter;
 import com.hyphenate.easeui.domain.EaseUser;
+import com.hyphenate.easeui.ui.EaseBaseActivity;
 import com.hyphenate.easeui.widget.EaseSidebar;
 
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ import zzh.cn.imdemo.R;
 import zzh.cn.imdemo.app.Constant;
 import zzh.cn.imdemo.app.DemoHelper;
 
-public class GroupPickContactsActivity extends BaseActivity {
+public class GroupPickContactsActivity extends EaseBaseActivity {
 	/** if this is a new group */
 	protected boolean isCreatingNewGroup;
 	private PickContactAdapter contactAdapter;

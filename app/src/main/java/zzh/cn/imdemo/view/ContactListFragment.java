@@ -1,11 +1,15 @@
 package zzh.cn.imdemo.view;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +17,14 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.hyphenate.EMConnectionListener;
 import com.hyphenate.EMError;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.ui.EaseBaseFragment;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
@@ -33,12 +39,15 @@ import java.util.List;
 import java.util.Map;
 
 import zzh.cn.imdemo.R;
+import zzh.cn.imdemo.app.DemoHelper;
+import zzh.cn.imdemo.db.InviteMessgeDao;
+import zzh.cn.imdemo.db.UserDao;
 
 /**
  * Created by Administrator on 2016/9/19.
  */
 public class ContactListFragment extends EaseBaseFragment {
-    private static final String TAG = "EaseContactListFragment";
+    private static final String TAG = "ContactListFragment";
 
     protected Handler handler = new Handler();
     protected EaseUser toBeProcessUser;
@@ -48,6 +57,8 @@ public class ContactListFragment extends EaseBaseFragment {
 
     protected boolean hidden;
 
+    //新的朋友条目
+    ContactItemView mCivNewFriends;
     //联系人条目
     protected List<EaseUser> contactList;
     //清楚搜索框按钮
@@ -58,7 +69,8 @@ public class ContactListFragment extends EaseBaseFragment {
     protected FrameLayout contentContainer;
     //联系人ListView
     protected ListView listView;
-
+    //返回按钮
+    private ImageView ivBack;
     //外部传入好友列表
     private Map<String, EaseUser> contactsMap;
 
@@ -88,15 +100,27 @@ public class ContactListFragment extends EaseBaseFragment {
         //好友列表的头布局，用到自定义View ContactItemView 文件
         View headView = getLayoutInflater(getArguments()).inflate(R.layout.head_list, listView,false);
         listView.addHeaderView(headView);
-        headView.findViewById(R.id.civ_new_friends).setOnClickListener(new View.OnClickListener() {
+        mCivNewFriends = (ContactItemView) headView.findViewById(R.id.civ_new_friends);
+        showUnreaView();
+        headView.findViewById(R.id.civ_groups).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // 头布局中监听事件
+                getActivity().startActivity(new Intent(getActivity(),GroupsActivity.class));
             }
         });
         //search
         query = (EditText) getView().findViewById(R.id.query);
         clearSearch = (ImageButton) getView().findViewById(R.id.search_clear);
+        ivBack = (ImageView) getView().findViewById(R.id.iv_back_contact);
+        ivBack.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                getActivity().finish();
+            }
+        });
+        registerForContextMenu(listView);
     }
 
     /**
@@ -112,12 +136,22 @@ public class ContactListFragment extends EaseBaseFragment {
         contactListLayout.init(contactList);
 
         if(listItemClickListener != null){
+            Log.i("TAG","！为空");
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    if (position == 0) {
+                        return;
+                    }
+                    Log.i("TAG", "item"+position);
                     EaseUser user = (EaseUser)listView.getItemAtPosition(position);
+                    Log.i("TAG", "item"+position + user.getUsername());
                     listItemClickListener.onListItemClicked(user);
+                    Intent intent = new Intent(getActivity(), ECChatActivity.class);
+                    intent.putExtra("userId", user.getUsername());
+                    intent.putExtra("chatType", EMMessage.ChatType.Chat);
+                    startActivity(intent);
                 }
             });
         }
@@ -160,6 +194,79 @@ public class ContactListFragment extends EaseBaseFragment {
 
 
     @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        if(((AdapterView.AdapterContextMenuInfo) menuInfo).position == 0){
+            return;
+        }
+        toBeProcessUser = (EaseUser) listView.getItemAtPosition(((AdapterView.AdapterContextMenuInfo) menuInfo).position);
+        toBeProcessUsername = toBeProcessUser.getUsername();
+        getActivity().getMenuInflater().inflate(R.menu.em_context_contact_list, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.delete_contact) {
+            try {
+                // delete contact
+                deleteContact(toBeProcessUser);
+                // remove invitation message
+                InviteMessgeDao dao = new InviteMessgeDao(getActivity());
+                dao.deleteMessage(toBeProcessUser.getUsername());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return true;
+        }else if(item.getItemId() == R.id.add_to_blacklist){
+            moveToBlacklist(toBeProcessUsername);
+            return true;
+        }
+        return super.onContextItemSelected(item);
+    }
+
+    /**
+     * 删除联系人
+     * @param tobeDeleteUser
+     */
+    public void deleteContact(final EaseUser tobeDeleteUser) {
+        String st1 = getResources().getString(R.string.deleting);
+        final String st2 = getResources().getString(R.string.Delete_failed);
+        final ProgressDialog pd = new ProgressDialog(getActivity());
+        pd.setMessage(st1);
+        pd.setCanceledOnTouchOutside(false);
+        pd.show();
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    EMClient.getInstance().contactManager().deleteContact(tobeDeleteUser.getUsername());
+                    // remove user from memory and database
+                    UserDao dao = new UserDao(getActivity());
+                    dao.deleteContact(tobeDeleteUser.getUsername());
+                    DemoHelper.getInstance().getContactList().remove(tobeDeleteUser.getUsername());
+                    getActivity().runOnUiThread(new Runnable() {
+                        public void run() {
+                            pd.dismiss();
+                            contactList.remove(tobeDeleteUser);
+                            contactListLayout.refresh();
+
+                        }
+                    });
+                } catch (final Exception e) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        public void run() {
+                            pd.dismiss();
+                            Toast.makeText(getActivity(), st2 + e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                }
+
+            }
+        }).start();
+
+    }
+
+    @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         this.hidden = hidden;
@@ -178,7 +285,7 @@ public class ContactListFragment extends EaseBaseFragment {
 
 
     /**
-     * move user to blacklist
+     * 移入黑名单
      */
     protected void moveToBlacklist(final String username){
         final ProgressDialog pd = new ProgressDialog(getActivity());
@@ -213,13 +320,27 @@ public class ContactListFragment extends EaseBaseFragment {
         }).start();
 
     }
-
+    InviteMessgeDao inviteMessgeDao;
     // refresh ui
     public void refresh() {
         getContactList();
         contactListLayout.refresh();
+        showUnreaView();
     }
 
+    public void showUnreaView(){
+        //判断是否有好友添加的请求，有责显示红色点
+        if (inviteMessgeDao == null) {
+            inviteMessgeDao = new InviteMessgeDao(getActivity());
+        }
+        if (inviteMessgeDao.getUnreadMessagesCount() > 0) {
+            mCivNewFriends.showUnreadMsgView();
+            Log.d("TGA", "大于零");
+        }else{
+            mCivNewFriends.hideUnreadMsgView();
+            Log.d("TAG", "小于零");
+        }
+    }
 
     @Override
     public void onDestroy() {

@@ -24,6 +24,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Vibrator;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMMessage;
@@ -234,7 +235,14 @@ public class EaseNotifier {
             if (notificationInfoProvider != null) {
                 msgIntent = notificationInfoProvider.getLaunchIntent(message);
             }
+            if (msgIntent == null) {
+                Log.d("TGA", "msgIntent == null");
+                msgIntent = new Intent("");
+            }else{
+                Log.d("TGA", "msgIntent != null");
 
+            }
+            //挑战意图
             PendingIntent pendingIntent = PendingIntent.getActivity(appContext, notifyID, msgIntent,PendingIntent.FLAG_UPDATE_CURRENT);
 
             if(numIncrease){
