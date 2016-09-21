@@ -116,12 +116,12 @@
         "source": "D:\\down\\ImDemo\\easeui\\src\\main\\res\\drawable-hdpi\\ee_3.png"
     },
     {
-        "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_mm_listitem_disable.9.png",
-        "source": "D:\\down\\ImDemo\\easeui\\src\\main\\res\\drawable-hdpi\\ease_mm_listitem_disable.9.png"
-    },
-    {
         "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_contact_list_selected.png",
         "source": "D:\\down\\ImDemo\\easeui\\src\\main\\res\\drawable-hdpi\\ease_contact_list_selected.png"
+    },
+    {
+        "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ease_mm_listitem_disable.9.png",
+        "source": "D:\\down\\ImDemo\\easeui\\src\\main\\res\\drawable-hdpi\\ease_mm_listitem_disable.9.png"
     },
     {
         "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ee_24.png",

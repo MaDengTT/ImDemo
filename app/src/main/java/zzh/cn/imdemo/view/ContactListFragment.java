@@ -101,6 +101,12 @@ public class ContactListFragment extends EaseBaseFragment {
         View headView = getLayoutInflater(getArguments()).inflate(R.layout.head_list, listView,false);
         listView.addHeaderView(headView);
         mCivNewFriends = (ContactItemView) headView.findViewById(R.id.civ_new_friends);
+        mCivNewFriends.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ECNewFriendsMsgActivity.startECNewFriendsMsgActivity(getActivity());
+            }
+        });
         showUnreaView();
         headView.findViewById(R.id.civ_groups).setOnClickListener(new View.OnClickListener() {
             @Override

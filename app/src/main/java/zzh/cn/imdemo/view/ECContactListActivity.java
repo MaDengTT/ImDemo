@@ -1,5 +1,6 @@
 package zzh.cn.imdemo.view;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,6 +27,13 @@ public class ECContactListActivity extends EaseBaseActivity {
 
 
     ContactListFragment fragment;
+
+    public static void startECContactListActivity(Activity activity) {
+        if (activity != null) {
+            Intent intent = new Intent(activity, ECContactListActivity.class);
+            activity.startActivity(intent);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
