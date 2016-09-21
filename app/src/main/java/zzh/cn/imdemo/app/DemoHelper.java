@@ -39,6 +39,8 @@ import zzh.cn.imdemo.parse.UserProfileManager;
 //import com.hyphenate.chatuidemo.receiver.CallReceiver;
 
 import zzh.cn.imdemo.utils.PreferenceManager;
+import zzh.cn.imdemo.view.ECChatActivity;
+
 import com.hyphenate.easeui.controller.EaseUI;
 
 import com.hyphenate.easeui.controller.EaseUI.EaseSettingsProvider;
@@ -339,7 +341,7 @@ public class DemoHelper {
             public Intent getLaunchIntent(EMMessage message) {
             	// you can set what activity you want display when user click the notification
                 //当用户单击“通知”时，您可以设置要显示的活动
-//                Intent intent = new Intent(appContext, ChatActivity.class);
+                Intent intent = new Intent(appContext, ECChatActivity.class);
                 // open calling activity if there is call
                 if(isVideoCalling){
 //                    intent = new Intent(appContext, VideoCallActivity.class); TODO
@@ -348,21 +350,20 @@ public class DemoHelper {
                 }else{
                     ChatType chatType = message.getChatType();
                     if (chatType == ChatType.Chat) { // single chat message
-//                        intent.putExtra("userId", message.getFrom());
-//                        intent.putExtra("chatType", Constant.CHATTYPE_SINGLE);
+                        intent.putExtra("userId", message.getFrom());
+                        intent.putExtra("chatType", Constant.CHATTYPE_SINGLE);
                     } else { // group chat message
                         // message.getTo() is the group id
 //                        intent.putExtra("userId", message.getTo());
                         if(chatType == ChatType.GroupChat){
-//                            intent.putExtra("chatType", Constant.CHATTYPE_GROUP);
+                            intent.putExtra("chatType", Constant.CHATTYPE_GROUP);
                         }else{
 //                            intent.putExtra("chatType", Constant.CHATTYPE_CHATROOM);
                         }
                         
                     }
                 }
-//                return intent;
-                return null;
+                return intent;
             }
         });
     }

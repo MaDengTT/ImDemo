@@ -13,6 +13,7 @@
  */
 package zzh.cn.imdemo.view;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -49,6 +50,14 @@ public class GroupPickContactsActivity extends EaseBaseActivity {
 	private PickContactAdapter contactAdapter;
 	/** members already in the group */
 	private List<String> existMembers;
+
+	public static void startGroupPickContactsActivity(Activity activity, String groupId) {
+		if (activity != null) {
+			Intent intent = new Intent(activity, GroupPickContactsActivity.class);
+			intent.putExtra("groupId", groupId);
+			activity.startActivity(intent);
+		}
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
