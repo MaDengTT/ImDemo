@@ -196,6 +196,9 @@ public class ContactListFragment extends EaseBaseFragment {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
+        if(((AdapterView.AdapterContextMenuInfo) menuInfo).position == 0){
+            return;
+        }
         toBeProcessUser = (EaseUser) listView.getItemAtPosition(((AdapterView.AdapterContextMenuInfo) menuInfo).position);
         toBeProcessUsername = toBeProcessUser.getUsername();
         getActivity().getMenuInflater().inflate(R.menu.em_context_contact_list, menu);

@@ -21,7 +21,7 @@ public class ECChatActivity extends EaseBaseActivity {
         setContentView(R.layout.activity_chat);
 
         // 这里直接使用EaseUI封装好的聊天界面
-        chatFragment = new EaseChatFragment();
+        chatFragment = new ECChatFragment();
         // 将参数传递给聊天界面
         chatFragment.setArguments(getIntent().getExtras());
         getSupportFragmentManager().beginTransaction().add(R.id.ec_layout_container, chatFragment).commit();

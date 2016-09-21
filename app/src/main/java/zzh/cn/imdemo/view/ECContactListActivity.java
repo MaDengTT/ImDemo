@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Map;
 
 import zzh.cn.imdemo.R;
+import zzh.cn.imdemo.app.DemoHelper;
+import zzh.cn.imdemo.db.DbOpenHelper;
 
 /**
  * 联系人列表页
@@ -29,6 +31,11 @@ public class ECContactListActivity extends EaseBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eccontact_list);
+
+        Map<String, EaseUser> contactList = DemoHelper.getInstance().getContactList();
+        for (EaseUser user : contactList.values()) {
+            Log.d("TAG", user.getUsername());
+        }
 
         fragment = new ContactListFragment();
         fragment.setContactListItemClickListener(new ContactListFragment.EaseContactListItemClickListener() {

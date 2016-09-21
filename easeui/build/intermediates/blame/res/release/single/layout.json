@@ -4,12 +4,12 @@
         "source": "D:\\down\\ImDemo\\easeui\\src\\main\\res\\layout\\ease_row_received_message.xml"
     },
     {
-        "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_fragment_contact_list.xml",
-        "source": "D:\\down\\ImDemo\\easeui\\src\\main\\res\\layout\\ease_fragment_contact_list.xml"
-    },
-    {
         "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_received_video_call.xml",
         "source": "D:\\down\\ImDemo\\easeui\\src\\main\\res\\layout\\ease_row_received_video_call.xml"
+    },
+    {
+        "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_fragment_contact_list.xml",
+        "source": "D:\\down\\ImDemo\\easeui\\src\\main\\res\\layout\\ease_fragment_contact_list.xml"
     },
     {
         "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_sent_picture.xml",
@@ -56,12 +56,12 @@
         "source": "D:\\down\\ImDemo\\easeui\\src\\main\\res\\layout\\ease_widget_chat_primary_menu.xml"
     },
     {
-        "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_sent_location.xml",
-        "source": "D:\\down\\ImDemo\\easeui\\src\\main\\res\\layout\\ease_row_sent_location.xml"
-    },
-    {
         "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_chat_history.xml",
         "source": "D:\\down\\ImDemo\\easeui\\src\\main\\res\\layout\\ease_row_chat_history.xml"
+    },
+    {
+        "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_sent_location.xml",
+        "source": "D:\\down\\ImDemo\\easeui\\src\\main\\res\\layout\\ease_row_sent_location.xml"
     },
     {
         "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_sent_message.xml",

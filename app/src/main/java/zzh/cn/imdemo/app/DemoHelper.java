@@ -186,21 +186,21 @@ public class DemoHelper {
         Log.d(TAG, "init HuanXin Options");
         
         EMOptions options = new EMOptions();
-        // set if accept the invitation automatically
+        // 是否自动接受邀请
         options.setAcceptInvitationAlways(false);
         // set if you need read ack
         options.setRequireAck(true);
         // set if you need delivery ack
         options.setRequireDeliveryAck(false);
 
-        //you need apply & set your own id if you want to use google cloud messaging.
+        //谷歌云服务Key
         options.setGCMNumber("324169311137");
-        //you need apply & set your own id if you want to use Mi push notification
+        //小米云服务Key
         options.setMipushConfig("2882303761517426801", "5381742660801");
-        //you need apply & set your own id if you want to use Huawei push notification
+        //华为云服务Key
         options.setHuaweiPushAppId("10492024");
 
-        //set custom servers, commonly used in private deployment
+        //设置自定义服务器，常用于私有部署
         if(demoModel.isCustomServerEnable() && demoModel.getRestServer() != null && demoModel.getIMServer() != null) {
             options.setRestServer(demoModel.getRestServer());
             options.setIMServer(demoModel.getIMServer());
@@ -218,7 +218,6 @@ public class DemoHelper {
     }
 
     protected void setEaseUIProviders() {
-    	// set profile provider if you want easeUI to handle avatar and nickname
         //如果你想easeui等配置文件提供程序处理的头像和昵称
         easeUI.setUserProfileProvider(new EaseUserProfileProvider() {
             
@@ -256,7 +255,7 @@ public class DemoHelper {
                 }else{
                     String chatUsename = null;
                     List<String> notNotifyIds = null;
-                    // get user or group id which was blocked to show message notifications
+                    // 获取被封锁的用户或组标识以显示消息通知
                     if (message.getChatType() == ChatType.Chat) {
                         chatUsename = message.getFrom();
                         notNotifyIds = demoModel.getDisabledIds();
@@ -436,6 +435,7 @@ public class DemoHelper {
     
     /**
      * register group and contact listener, you need register when login
+     * 注册组和联系人侦听器，您需要登录时注册
      */
     public void registerGroupAndContactListener(){
         if(!isGroupAndContactListenerRegisted){
