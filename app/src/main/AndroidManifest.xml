@@ -134,6 +134,41 @@
             android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".view.ECNewFriendsMsgActivity"></activity>
+
+        <receiver
+            android:name=".view.GCMPushBroadCast"
+            android:exported="false" >
+
+            <intent-filter>
+                <action android:name="com.hyphenate.sdk.push" />
+
+                <category android:name="com.hyphenate.chatuidemo" />
+            </intent-filter>
+        </receiver>
+            <!-- 声明sdk所需的receiver -->
+            <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
+                <intent-filter>
+                    <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                    <data android:scheme="package" />
+                </intent-filter>
+                <!-- 可选filter -->
+                <intent-filter>
+                    <action android:name="android.intent.action.BOOT_COMPLETED" />
+                    <action android:name="android.intent.action.USER_PRESENT" />
+                </intent-filter>
+            </receiver>
+
+
+        <!-- 百度地图所需的service -->
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="3ecea51f560650b1ed8a4b99808f52e8" />
     </application>
 
 </manifest>
