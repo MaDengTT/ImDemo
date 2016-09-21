@@ -74,7 +74,7 @@
     <string name="chatset">聊天设置</string>
     <string name="yangshengqi">使用扬声器播放语音</string>
     <string name="book_black">通讯录黑名单</string>
-    <string name="session">会话</string>
+    <string name="session">消息</string>
     <string name="address_book">通讯录</string>
     <string name="setting">设置</string>
     <string name="now_refresh_list">正在刷新联系人</string>
@@ -289,8 +289,8 @@
     <string name="hanging_up">正在挂断..</string>
     <string name="illegal_user_name">用户名不合法</string>
     <string name="robot_chat">环信小助手</string>
-    <string name="title_user_profile">个人资料</string>
-    <string name="nickname">昵称</string>
+    <string name="title_user_profile">详情资料</string>
+    <string name="nickname">设置备注</string>
     <string name="dl_title_upload_photo">上传头像</string>
     <string name="dl_msg_local_upload">本地上传</string>
     <string name="dl_msg_take_photo">拍照上传</string>

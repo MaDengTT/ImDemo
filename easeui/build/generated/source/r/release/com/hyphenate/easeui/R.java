@@ -303,22 +303,23 @@ containing a value of this type.
         public static int common_botton_bar_blue=0x7f080018;
         public static int common_top_bar_blue=0x7f080019;
         public static int divider_list=0x7f08001a;
-        public static int emojicon_tab_nomal=0x7f08001b;
-        public static int emojicon_tab_selected=0x7f08001c;
-        public static int error_item_color=0x7f08001d;
-        public static int gray_normal=0x7f08001e;
-        public static int gray_pressed=0x7f08001f;
-        public static int grid_state_focused=0x7f080020;
-        public static int grid_state_pressed=0x7f080021;
-        public static int holo_blue_bright=0x7f080022;
-        public static int holo_green_light=0x7f080023;
-        public static int holo_orange_light=0x7f080024;
-        public static int holo_red_light=0x7f080025;
-        public static int list_itease_primary_color=0x7f080026;
-        public static int list_itease_secondary_color=0x7f080027;
-        public static int orange=0x7f080028;
-        public static int top_bar_normal_bg=0x7f080029;
-        public static int voip_interface_text_color=0x7f08002a;
+        public static int ec_red=0x7f08001b;
+        public static int emojicon_tab_nomal=0x7f08001c;
+        public static int emojicon_tab_selected=0x7f08001d;
+        public static int error_item_color=0x7f08001e;
+        public static int gray_normal=0x7f08001f;
+        public static int gray_pressed=0x7f080020;
+        public static int grid_state_focused=0x7f080021;
+        public static int grid_state_pressed=0x7f080022;
+        public static int holo_blue_bright=0x7f080023;
+        public static int holo_green_light=0x7f080024;
+        public static int holo_orange_light=0x7f080025;
+        public static int holo_red_light=0x7f080026;
+        public static int list_itease_primary_color=0x7f080027;
+        public static int list_itease_secondary_color=0x7f080028;
+        public static int orange=0x7f080029;
+        public static int top_bar_normal_bg=0x7f08002a;
+        public static int voip_interface_text_color=0x7f08002b;
     }
     public static final class dimen {
         public static int activity_horizontal_margin=0x7f050002;
@@ -979,16 +980,10 @@ containing a value of this type.
         public static int Anim_style=0x7f070009;
         public static int Anim_style2=0x7f070000;
         public static int AppTheme=0x7f07000a;
-        /**  模糊 
-         */
         public static int HeadScale=0x7f07000b;
         public static int MyAlertDialog=0x7f07000c;
         public static int MyDialogStyle=0x7f07000d;
-        /**  模糊 
-         */
         public static int MyDialogStyleBottom=0x7f07000e;
-        /**  模糊 
-         */
         public static int MyDialogStyleTop=0x7f07000f;
         public static int bottom_line_edit_text_style=0x7f070010;
         public static int chat_content_date_style=0x7f070011;

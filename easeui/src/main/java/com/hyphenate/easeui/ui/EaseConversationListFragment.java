@@ -1,6 +1,7 @@
 package com.hyphenate.easeui.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -19,6 +20,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.hyphenate.EMConnectionListener;
 import com.hyphenate.EMConversationListener;
@@ -27,6 +29,7 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.easeui.R;
 import com.hyphenate.easeui.widget.EaseConversationList;
+import com.hyphenate.easeui.widget.EaseTitleBar;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,7 +49,7 @@ public class EaseConversationListFragment extends EaseBaseFragment{
     protected List<EMConversation> conversationList = new ArrayList<EMConversation>();
     protected EaseConversationList conversationListView;
     protected FrameLayout errorItemContainer;
-
+    protected EaseTitleBar titleBar;
     protected boolean isConflict;
     
     protected EMConversationListener convListener = new EMConversationListener(){
@@ -57,7 +60,8 @@ public class EaseConversationListFragment extends EaseBaseFragment{
 		}
     	
     };
-    
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.ease_fragment_conversation_list, container, false);
@@ -78,6 +82,15 @@ public class EaseConversationListFragment extends EaseBaseFragment{
         // button to clear content in search bar
         clearSearch = (ImageButton) getView().findViewById(R.id.search_clear);
         errorItemContainer = (FrameLayout) getView().findViewById(R.id.fl_error_item);
+        titleBar = (EaseTitleBar)getView().findViewById(R.id.title_bar);
+        //设置标题的左图片
+        titleBar.setLeftImageResource(R.drawable.ease_app_panel_video_icon);
+        titleBar.setLeftLayoutClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"hehe",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
     
     @Override

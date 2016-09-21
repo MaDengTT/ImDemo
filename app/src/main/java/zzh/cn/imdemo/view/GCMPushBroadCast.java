@@ -43,7 +43,7 @@ public class GCMPushBroadCast extends BroadcastReceiver {
 			String appname = (String) packageManager
 					.getApplicationLabel(context.getApplicationInfo());
 
-			// notification titile
+			// 通知标题
 			String contentTitle = appname;
 			String packageName = context.getApplicationInfo().packageName;
 

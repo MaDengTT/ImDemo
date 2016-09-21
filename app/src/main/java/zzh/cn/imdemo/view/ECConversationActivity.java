@@ -10,7 +10,6 @@ import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.ui.EaseBaseActivity;
-import com.hyphenate.easeui.ui.EaseConversationListFragment;
 
 import java.util.List;
 
@@ -19,16 +18,17 @@ import zzh.cn.imdemo.app.DemoHelper;
 
 public class ECConversationActivity extends EaseBaseActivity {
 
-    EaseConversationListFragment conversationListFragment;
+    ECConversationListFragment conversationListFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ecconversation);
-        conversationListFragment = new EaseConversationListFragment();
-        conversationListFragment.setConversationListItemClickListener(new EaseConversationListFragment.EaseConversationListItemClickListener() {
+        conversationListFragment = new ECConversationListFragment();
+        conversationListFragment.setConversationListItemClickListener(new ECConversationListFragment.EaseConversationListItemClickListener() {
             @Override
             public void onListItemClicked(EMConversation conversation) {
-                Intent intent = new Intent(ECConversationActivity.this, ECChatActivity.class);
+                Intent intent = new
+                        Intent(ECConversationActivity.this, ECChatActivity.class);
                 // EaseUI封装的聊天界面需要这两个参数，聊天者的username，以及聊天类型，单聊还是群聊
                 intent.putExtra("userId", conversation.getUserName());
                 intent.putExtra("chatType", conversation.getType());

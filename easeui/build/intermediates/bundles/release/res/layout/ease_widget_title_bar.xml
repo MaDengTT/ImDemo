@@ -3,10 +3,11 @@
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="@dimen/height_top_bar"
-    android:background="@color/top_bar_normal_bg"
+    android:background="@color/ec_red"
     android:gravity="center_vertical" >
 
     <RelativeLayout
+        android:padding="10dp"
         android:id="@+id/left_layout"
         android:layout_width="50dip"
         android:layout_height="match_parent"
@@ -14,6 +15,7 @@
         android:clickable="true" >
 
         <ImageView
+
             android:id="@+id/left_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,10 +28,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:textColor="#ffffff"
+        android:textColor="#fffefe"
         android:textSize="20sp" />
 
     <RelativeLayout
+        android:padding="10dp"
         android:id="@+id/right_layout"
         android:layout_width="50dp"
         android:layout_height="match_parent"
