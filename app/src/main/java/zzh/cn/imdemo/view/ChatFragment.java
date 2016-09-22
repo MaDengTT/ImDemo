@@ -84,6 +84,12 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
     }
 
     @Override
+    protected void initView() {
+        super.initView();
+
+    }
+
+    @Override
     protected void setUpView() {
         setChatFragmentListener(this);
         if (chatType == Constant.CHATTYPE_SINGLE) {
@@ -105,6 +111,15 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
                 onBackPressed();
             }
         });
+        if (chatType == Constant.CHATTYPE_SINGLE) {
+            titleBar.setRightLayoutClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    UserProfileActivity.startUserProfileActivity(getActivity(),toChatUsername);
+                }
+            });
+            titleBar.setRightImageResource(R.drawable.em_icon_account);
+        }
         ((EaseEmojiconMenu)inputMenu.getEmojiconMenu()).addEmojiconGroup(EmojiconExampleGroupData.getData());
         if(chatType == EaseConstant.CHATTYPE_GROUP){
             inputMenu.getPrimaryMenu().getEditText().addTextChangedListener(new TextWatcher() {
@@ -252,9 +267,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
     @Override
     public void onAvatarClick(String username) {
         //处理用户头像点击的监听
-        Intent intent = new Intent(getActivity(), UserProfileActivity.class);
-        intent.putExtra("username", username);
-        startActivity(intent);
+        UserProfileActivity.startUserProfileActivity(getActivity(),username);
     }
 
     @Override

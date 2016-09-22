@@ -120,7 +120,7 @@ public class GroupsActivity extends EaseBaseActivity {
 				if (position == 1) {
 					// create a new group TODO 创建组
 					startActivityForResult(new Intent(GroupsActivity.this, ECNewGroupActivity.class), 0);
-				} else if (position == 2) {
+//				} else if (position == 2) {
 					// join a public group TODO 加入组
 //					startActivityForResult(new Intent(GroupsActivity.this, PublicGroupsActivity.class), 0);
 				} else {
@@ -128,7 +128,7 @@ public class GroupsActivity extends EaseBaseActivity {
 					Intent intent = new Intent(GroupsActivity.this, ECChatActivity.class);
 					// it is group chat
 					intent.putExtra("chatType", Constant.CHATTYPE_GROUP);
-					intent.putExtra("userId", groupAdapter.getItem(position - 3).getGroupId());
+					intent.putExtra("userId", groupAdapter.getItem(position - 2).getGroupId());
 					startActivityForResult(intent, 0);
 				}
 			}
