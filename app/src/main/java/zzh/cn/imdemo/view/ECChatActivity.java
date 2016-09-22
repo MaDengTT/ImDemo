@@ -3,9 +3,6 @@ package zzh.cn.imdemo.view;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.hyphenate.easeui.ui.EaseBaseActivity;
@@ -17,8 +14,7 @@ public class ECChatActivity extends EaseBaseActivity {
 
     // 当前聊天的 ID
     private String mChatId;
-    private EaseChatFragment chatFragment;
-
+    private ChatFragment fragment;
     /**
      * 挑战聊天界面
      * @param activity

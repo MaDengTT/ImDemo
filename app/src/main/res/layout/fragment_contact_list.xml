@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         hyphenate:titleBarTitle="@string/address_book" />
     <LinearLayout
-        android:background="#f33"
+        android:background="@color/ec_red"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="60dp">
@@ -24,7 +24,7 @@
 
             <ImageView
                 android:id="@+id/iv_back_contact"
-                android:padding="10dp"
+                android:padding="12dp"
                 android:src="@drawable/back_icon"
                 android:layout_width="50dp"
                 android:layout_height="match_parent" />

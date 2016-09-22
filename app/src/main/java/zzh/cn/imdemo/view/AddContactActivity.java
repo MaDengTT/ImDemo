@@ -1,19 +1,11 @@
 /**
- * Copyright (C) 2016 Hyphenate Inc. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *     http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * 添加联系人界面
  */
 package zzh.cn.imdemo.view;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -24,9 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hyphenate.chat.EMClient;
-import com.hyphenate.chatuidemo.DemoHelper;
-import com.hyphenate.chatuidemo.R;
+
 import com.hyphenate.easeui.widget.EaseAlertDialog;
+
+import zzh.cn.imdemo.R;
+import zzh.cn.imdemo.app.DemoHelper;
 
 public class AddContactActivity extends BaseActivity{
 	private EditText editText;
@@ -36,6 +30,13 @@ public class AddContactActivity extends BaseActivity{
 	private String toAddUsername;
 	private ProgressDialog progressDialog;
 
+
+	public static void startAddContactActivity(Activity activity) {
+		if (activity != null) {
+			Intent intent = new Intent(activity, AddContactActivity.class);
+			activity.startActivity(intent);
+		}
+	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -60,7 +61,7 @@ public class AddContactActivity extends BaseActivity{
 	public void searchContact(View v) {
 		final String name = editText.getText().toString();
 		String saveText = searchBtn.getText().toString();
-		
+
 		if (getString(R.string.button_search).equals(saveText)) {
 			toAddUsername = name;
 			if(TextUtils.isEmpty(name)) {
@@ -68,13 +69,13 @@ public class AddContactActivity extends BaseActivity{
 				return;
 			}
 			
-			// TODO you can search the user from your app server here.
+			// TODO 你可以在这里搜索用户从您的应用程序服务器
 			
-			//show the userame and add button if user exist
+			//如果用户存在，显示userame并添加按钮
 			searchedUserLayout.setVisibility(View.VISIBLE);
 			nameText.setText(toAddUsername);
-			
-		} 
+
+		}
 	}	
 	
 	/**

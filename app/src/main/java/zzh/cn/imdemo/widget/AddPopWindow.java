@@ -1,35 +1,49 @@
 package zzh.cn.imdemo.widget;
   
 import android.app.Activity;  
-import android.content.Context;  
-import android.graphics.drawable.ColorDrawable;  
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;  
 import android.view.View;  
 import android.view.View.OnClickListener;  
 import android.view.ViewGroup.LayoutParams;  
 import android.widget.LinearLayout;  
-import android.widget.PopupWindow;  
-  
+import android.widget.PopupWindow;
+import android.widget.Toast;
+
+import zzh.cn.imdemo.R;
+import zzh.cn.imdemo.view.AddContactActivity;
+import zzh.cn.imdemo.view.ECApplication;
+import zzh.cn.imdemo.view.ECLoginActivity;
+import zzh.cn.imdemo.view.GroupPickContactsActivity;
+import zzh.cn.imdemo.view.GroupsActivity;
+
 /** 
  * 自定义popupWindow 
  *  
- * @author wwj 
+ *
  *  
  *  
  */  
 public class AddPopWindow extends PopupWindow {  
-    private View conentView;  
-  
+    private View conentView;
+    private final LinearLayout add_group;
+    private final LinearLayout add_friend;
+
     public AddPopWindow(final Activity context) {  
         LayoutInflater inflater = (LayoutInflater) context  
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);  
-        conentView = inflater.inflate(R.layout.add_popup_dialog, null);  
-        int h = context.getWindowManager().getDefaultDisplay().getHeight();  
+        conentView = inflater.inflate(R.layout.add_popu_dialog, null);
+        add_group = (LinearLayout) conentView.findViewById(R.id.add_group);
+        add_friend = (LinearLayout) conentView.findViewById(R.id.add_friend);
+
+        int h = context.getWindowManager().getDefaultDisplay().getHeight();
         int w = context.getWindowManager().getDefaultDisplay().getWidth();  
         // 设置SelectPicPopupWindow的View  
         this.setContentView(conentView);  
         // 设置SelectPicPopupWindow弹出窗体的宽  
-        this.setWidth(w / 2 + 50);  
+        this.setWidth(w / 2);
         // 设置SelectPicPopupWindow弹出窗体的高  
         this.setHeight(LayoutParams.WRAP_CONTENT);  
         // 设置SelectPicPopupWindow弹出窗体可点击  
@@ -45,14 +59,19 @@ public class AddPopWindow extends PopupWindow {
         // 设置SelectPicPopupWindow弹出窗体动画效果  
         this.setAnimationStyle(R.style.AnimationPreview);  
         LinearLayout addTaskLayout = (LinearLayout) conentView  
-                .findViewById(R.id.add_task_layout);  
+                .findViewById(R.id.add_group);
         LinearLayout teamMemberLayout = (LinearLayout) conentView  
-                .findViewById(R.id.team_member_layout);  
-        addTaskLayout.setOnClickListener(new OnClickListener() {  
+                .findViewById(R.id.add_friend);
+
+
+//      //添加popup点击事件
+        addTaskLayout.setOnClickListener(new OnClickListener() {
   
             @Override  
             public void onClick(View arg0) {  
-                AddPopWindow.this.dismiss();  
+                AddPopWindow.this.dismiss();
+                //Toast.makeText(ECApplication.getInstance(),"添加群",Toast.LENGTH_SHORT).show();
+                GroupsActivity.startGroupsActivity(context);
             }  
         });  
   
@@ -60,11 +79,14 @@ public class AddPopWindow extends PopupWindow {
   
             @Override  
             public void onClick(View v) {  
-                AddPopWindow.this.dismiss();  
+                AddPopWindow.this.dismiss();
+                //Toast.makeText(ECApplication.getInstance(),"添加好友",Toast.LENGTH_SHORT).show();
+
+               AddContactActivity.startAddContactActivity(context);
             }  
         });  
     }  
-  
+
     /** 
      * 显示popupWindow 
      *  

@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -36,6 +37,8 @@ import java.util.List;
 import java.util.Map;
 
 import zzh.cn.imdemo.R;
+import zzh.cn.imdemo.app.Constant;
+import zzh.cn.imdemo.widget.AddPopWindow;
 
 /**
  * Created by Android on 2016/9/20.
@@ -88,6 +91,8 @@ public class ECConversationListFragment extends EaseConversationListFragment {
             clearSearch = (ImageButton) getView().findViewById(com.hyphenate.easeui.R.id.search_clear);
             errorItemContainer = (FrameLayout) getView().findViewById(com.hyphenate.easeui.R.id.fl_error_item);
             titleBar = (EaseTitleBar)getView().findViewById(R.id.title_bar);
+            final Button occupation= (Button) titleBar.getOccupation();
+
             //设置标题的左图片
             titleBar.setLeftImageResource(R.drawable.em_contactlist_dmh);
             titleBar.setLeftLayoutClickListener(new View.OnClickListener() {
@@ -103,7 +108,10 @@ public class ECConversationListFragment extends EaseConversationListFragment {
             titleBar.setRightLayoutClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getContext(),"添加好友",Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getContext(),"添加好友",Toast.LENGTH_SHORT).show();
+                    //自定义的popup
+                    AddPopWindow popu =new AddPopWindow(getActivity());
+                    popu.showPopupWindow(occupation);
                 }
             });
         }
@@ -113,13 +121,32 @@ public class ECConversationListFragment extends EaseConversationListFragment {
             conversationList.addAll(loadConversationList());
             conversationListView.init(conversationList);
 
+
             if(listItemClickListener != null){
                 conversationListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         EMConversation conversation = conversationListView.getItem(position);
-                        listItemClickListener.onListItemClicked(conversation);
+                        String username = conversation.getUserName();
+                        if (username.equals(EMClient.getInstance().getCurrentUser()))
+                            Toast.makeText(getActivity(), R.string.Cant_chat_with_yourself, Toast.LENGTH_SHORT).show();
+                        else {
+                            // 开始聊天
+                            Intent intent = new Intent(getActivity(), ECChatActivity.class);
+                            if(conversation.isGroup()){
+                                if(conversation.getType() == EMConversation.EMConversationType.ChatRoom){
+                                    // it's group chat
+                                    intent.putExtra(Constant.EXTRA_CHAT_TYPE, Constant.CHATTYPE_CHATROOM);
+                                }else{
+                                    intent.putExtra(Constant.EXTRA_CHAT_TYPE, Constant.CHATTYPE_GROUP);
+                                }
+
+                            }
+                            // 这是单人聊天
+                            intent.putExtra(Constant.EXTRA_USER_ID, username);
+                            startActivity(intent);
+                        }
                     }
                 });
             }

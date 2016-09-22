@@ -1,5 +1,6 @@
 package zzh.cn.imdemo.view;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -14,11 +15,12 @@ import android.widget.Toast;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.EMError;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.easeui.ui.EaseBaseActivity;
 import com.hyphenate.exceptions.HyphenateException;
 
 import zzh.cn.imdemo.R;
 
-public class ECLoginActivity extends AppCompatActivity {
+public class ECLoginActivity extends EaseBaseActivity {
 
     // 弹出框
     private ProgressDialog mDialog;
@@ -33,6 +35,13 @@ public class ECLoginActivity extends AppCompatActivity {
     // 登录按钮
     private Button mSignInBtn;
 
+
+    public static void startECLoginActivity(Activity activity) {
+        if (activity != null) {
+            Intent intent = new Intent(activity, ECLoginActivity.class);
+            activity.startActivity(intent);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

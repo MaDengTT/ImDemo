@@ -272,7 +272,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
 //            return true;
 //        }
         //end of red packet code
-        return true;
+        return false;
     }
     @Override
     public void onCmdMessageReceived(List<EMMessage> messages) {

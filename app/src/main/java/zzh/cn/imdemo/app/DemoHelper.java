@@ -354,7 +354,7 @@ public class DemoHelper {
                         intent.putExtra("chatType", Constant.CHATTYPE_SINGLE);
                     } else { // group chat message
                         // message.getTo() is the group id
-//                        intent.putExtra("userId", message.getTo());
+                        intent.putExtra("userId", message.getTo());
                         if(chatType == ChatType.GroupChat){
                             intent.putExtra("chatType", Constant.CHATTYPE_GROUP);
                         }else{
@@ -396,7 +396,7 @@ public class DemoHelper {
             public void onConnected() {
                 // in case group and contact were already synced, we supposed to notify sdk we are ready to receive the events
                 if (isGroupsSyncedWithServer && isContactsSyncedWithServer) {
-                    EMLog.d(TAG, "group and contact already synced with servre");
+                    EMLog.d(TAG, "组和联系人已经与服务同步");
                 } else {
                     if (!isGroupsSyncedWithServer) {
                         asyncFetchGroupsFromServer(null);

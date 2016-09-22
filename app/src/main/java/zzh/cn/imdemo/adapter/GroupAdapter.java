@@ -56,10 +56,10 @@ public class GroupAdapter extends ArrayAdapter<EMGroup> {
 			return 0;
 		} else if (position == 1) {
 			return 1;
-		} else if (position == 2) {
-			return 2;
+//		} else if (position == 2) {
+//			return 2;
 		} else {
-			return 3;
+			return 2;
 		}
 	}
 
@@ -99,28 +99,30 @@ public class GroupAdapter extends ArrayAdapter<EMGroup> {
 			}
 			((ImageView) convertView.findViewById(R.id.avatar)).setImageResource(R.drawable.em_create_group);
 			((TextView) convertView.findViewById(R.id.name)).setText(newGroup);
-		} else if (getItemViewType(position) == 2) {
-			if (convertView == null) {
-				convertView = inflater.inflate(R.layout.em_row_add_group, parent, false);
-			}
-			((ImageView) convertView.findViewById(R.id.avatar)).setImageResource(R.drawable.em_add_public_group);
-			((TextView) convertView.findViewById(R.id.name)).setText(addPublicGroup);
-			((TextView) convertView.findViewById(R.id.header)).setVisibility(View.VISIBLE);
+//		} else if (getItemViewType(position) == 2) {
+//			if (convertView == null) {
+//				convertView = inflater.inflate(R.layout.em_row_add_group, parent, false);
+//			}
+//			((ImageView) convertView.findViewById(R.id.avatar)).setImageResource(R.drawable.em_add_public_group);
+//			((TextView) convertView.findViewById(R.id.name)).setText(addPublicGroup);
+//			((TextView) convertView.findViewById(R.id.header)).setVisibility(View.VISIBLE);
+//			//TODO 添加公开群
+//			convertView.setVisibility(View.GONE);
 
 		} else {
 			if (convertView == null) {
 				convertView = inflater.inflate(R.layout.em_row_group, parent, false);
 			}
-			((TextView) convertView.findViewById(R.id.name)).setText(getItem(position - 3).getGroupName());
+			((TextView) convertView.findViewById(R.id.name)).setText(getItem(position - 2).getGroupName());
 
 		}
-
+		convertView.setVisibility(View.VISIBLE);
 		return convertView;
 	}
 
 	@Override
 	public int getCount() {
-		return super.getCount() + 3;
+		return super.getCount() + 2;
 	}
 
 }

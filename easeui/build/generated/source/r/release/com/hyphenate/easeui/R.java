@@ -566,11 +566,12 @@ containing a value of this type.
         public static int mentioned=0x7f090029;
         public static int message=0x7f09002a;
         public static int message_list=0x7f090018;
-        public static int mic_image=0x7f090067;
+        public static int mic_image=0x7f090068;
         public static int msg_state=0x7f090028;
         public static int msg_status=0x7f090042;
         public static int name=0x7f090026;
         public static int none=0x7f090000;
+        public static int occupation=0x7f090067;
         public static int open=0x7f090004;
         public static int pager_view=0x7f09005b;
         public static int pb_load_local=0x7f090009;
@@ -580,7 +581,7 @@ containing a value of this type.
         public static int progressBar=0x7f09000b;
         public static int progress_bar=0x7f090031;
         public static int query=0x7f090047;
-        public static int recording_hint=0x7f090068;
+        public static int recording_hint=0x7f090069;
         public static int rectangle=0x7f090001;
         public static int right_image=0x7f090066;
         public static int right_layout=0x7f090065;

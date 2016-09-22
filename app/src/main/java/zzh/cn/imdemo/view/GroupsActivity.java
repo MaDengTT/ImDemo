@@ -13,6 +13,7 @@
  */
 package zzh.cn.imdemo.view;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -41,6 +42,13 @@ import zzh.cn.imdemo.adapter.GroupAdapter;
 import zzh.cn.imdemo.app.Constant;
 
 public class GroupsActivity extends EaseBaseActivity {
+
+	public static void startGroupsActivity(Activity activity) {
+		if (activity != null) {
+			Intent intent = new Intent(activity, GroupsActivity.class);
+			activity.startActivity(intent);
+		}
+	}
 	public static final String TAG = "GroupsActivity";
 	private ListView groupListView;
 	protected List<EMGroup> grouplist;

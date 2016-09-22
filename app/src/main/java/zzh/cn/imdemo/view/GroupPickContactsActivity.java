@@ -51,10 +51,10 @@ public class GroupPickContactsActivity extends EaseBaseActivity {
 	/** members already in the group */
 	private List<String> existMembers;
 
-	public static void startGroupPickContactsActivity(Activity activity, String groupId) {
+
+	public static void startGroupPickContactsActivity(Activity activity) {
 		if (activity != null) {
 			Intent intent = new Intent(activity, GroupPickContactsActivity.class);
-			intent.putExtra("groupId", groupId);
 			activity.startActivity(intent);
 		}
 	}
