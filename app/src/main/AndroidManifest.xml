@@ -103,6 +103,113 @@
         <meta-data
             android:name="EASEMOB_APPKEY"
             android:value="madashi#testconsole" />
+
+
+        <!--通讯录列表界面-->
+        <activity android:name=".view.ECContactListActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+        <!--会话列表界面-->
+        <activity android:name=".view.ECConversationActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            />
+        <!--群列表界面-->
+        <activity android:name=".view.GroupsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            />
+        <!--新建群界面-->
+        <activity android:name=".view.ECNewGroupActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            />
+        <!--群选择拉取用户界面-->
+        <activity android:name=".view.GroupPickContactsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            />
+        <!--查看图片界面-->
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseShowBigImageActivity"
+            android:screenOrientation="portrait" />
+        <!-- 地图 -->
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ECNewFriendsMsgActivity"
+            android:screenOrientation="portrait" />
+
+
+        <!--添加用户界面-->
+        <activity android:name=".view.AddContactActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+         />
+        <!--用户信息界面-->
+        <activity android:name=".view.UserProfileActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            />
+        <!--群信息界面-->
+        <activity android:name=".view.GroupDetailsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            />
+        <!--群黑名单界面-->
+        <activity android:name=".view.GroupBlacklistActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            />
+        <!--退出群时对话框界面-->
+        <activity android:name=".view.ExitGroupDialog"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            />
+        <!--搜索群消息界面-->
+        <activity android:name=".view.GroupSearchMessageActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".view.EditActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            />
+        <!-- 百度地图所需的service -->
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="3ecea51f560650b1ed8a4b99808f52e8" />
+
+        <!--通知的发送-->
+        <receiver
+            android:name=".view.GCMPushBroadCast"
+            android:exported="false" >
+
+            <intent-filter>
+                <action android:name="com.hyphenate.sdk.push" />
+
+                <category android:name="com.hyphenate.chatuidemo" />
+            </intent-filter>
+        </receiver>
+        <!-- 声明sdk所需的receiver -->
+        <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+            <!-- 可选filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
         <!-- 声明sdk所需的service SDK核心功能 -->
         <service
             android:name="com.hyphenate.chat.EMChatService"
@@ -120,61 +227,6 @@
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
-
-        <activity android:name=".view.ECContactListActivity" />
-        <activity android:name=".view.ECConversationActivity" />
-        <activity android:name=".view.GroupsActivity" />
-        <activity android:name=".view.ECNewGroupActivity" />
-        <activity android:name=".view.GroupPickContactsActivity" />
-        <activity
-            android:name="com.hyphenate.easeui.ui.EaseShowBigImageActivity"
-            android:screenOrientation="portrait" />
-        <!-- 地图 -->
-        <activity
-            android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".view.ECNewFriendsMsgActivity"></activity>
-
-        <receiver
-            android:name=".view.GCMPushBroadCast"
-            android:exported="false" >
-
-            <intent-filter>
-                <action android:name="com.hyphenate.sdk.push" />
-
-                <category android:name="com.hyphenate.chatuidemo" />
-            </intent-filter>
-        </receiver>
-            <!-- 声明sdk所需的receiver -->
-            <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
-                <intent-filter>
-                    <action android:name="android.intent.action.PACKAGE_REMOVED" />
-
-                    <data android:scheme="package" />
-                </intent-filter>
-                <!-- 可选filter -->
-                <intent-filter>
-                    <action android:name="android.intent.action.BOOT_COMPLETED" />
-                    <action android:name="android.intent.action.USER_PRESENT" />
-                </intent-filter>
-            </receiver>
-
-        <activity android:name=".view.AddContactActivity" />
-        <activity android:name=".view.UserProfileActivity" />
-        <activity android:name=".view.GroupDetailsActivity"/>
-        <activity android:name=".view.GroupBlacklistActivity" />
-        <activity android:name=".view.ExitGroupDialog"/>
-        <activity android:name=".view.GroupSearchMessageActivity"/>
-        <activity android:name=".view.EditActivity"/>
-        <!-- 百度地图所需的service -->
-        <service
-            android:name="com.baidu.location.f"
-            android:enabled="true"
-            android:process=":remote" />
-
-        <meta-data
-            android:name="com.baidu.lbsapi.API_KEY"
-            android:value="3ecea51f560650b1ed8a4b99808f52e8" />
     </application>
 
 </manifest>

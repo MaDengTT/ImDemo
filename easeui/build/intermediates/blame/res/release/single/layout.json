@@ -16,24 +16,24 @@
         "source": "E:\\AndroidStudioWork\\git\\ImDemo\\easeui\\src\\main\\res\\layout\\ease_activity_show_big_image.xml"
     },
     {
-        "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_conversation_item.xml",
-        "source": "D:\\down\\ImDemo\\easeui\\src\\main\\res\\layout\\ease_conversation_item.xml"
-    },
-    {
         "merged": "E:\\AndroidStudioWork\\git\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_widget_chat_primary_menu.xml",
         "source": "E:\\AndroidStudioWork\\git\\ImDemo\\easeui\\src\\main\\res\\layout\\ease_widget_chat_primary_menu.xml"
+    },
+    {
+        "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_conversation_item.xml",
+        "source": "D:\\down\\ImDemo\\easeui\\src\\main\\res\\layout\\ease_conversation_item.xml"
     },
     {
         "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_received_voice.xml",
         "source": "D:\\down\\ImDemo\\easeui\\src\\main\\res\\layout\\ease_row_received_voice.xml"
     },
     {
-        "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_contact.xml",
-        "source": "D:\\down\\ImDemo\\easeui\\src\\main\\res\\layout\\ease_row_contact.xml"
-    },
-    {
         "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_activity_show_file.xml",
         "source": "D:\\down\\ImDemo\\easeui\\src\\main\\res\\layout\\ease_activity_show_file.xml"
+    },
+    {
+        "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_contact.xml",
+        "source": "D:\\down\\ImDemo\\easeui\\src\\main\\res\\layout\\ease_row_contact.xml"
     },
     {
         "merged": "D:\\down\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_search_bar.xml",
@@ -152,16 +152,16 @@
         "source": "D:\\down\\ImDemo\\easeui\\src\\main\\res\\layout\\ease_widget_emojicon_tab_bar.xml"
     },
     {
-        "merged": "E:\\AndroidStudioWork\\git\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_received_message.xml",
-        "source": "E:\\AndroidStudioWork\\git\\ImDemo\\easeui\\src\\main\\res\\layout\\ease_row_received_message.xml"
+        "merged": "E:\\AndroidStudioWork\\git\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_alert_dialog.xml",
+        "source": "E:\\AndroidStudioWork\\git\\ImDemo\\easeui\\src\\main\\res\\layout\\ease_alert_dialog.xml"
     },
     {
         "merged": "E:\\AndroidStudioWork\\git\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_sent_file.xml",
         "source": "E:\\AndroidStudioWork\\git\\ImDemo\\easeui\\src\\main\\res\\layout\\ease_row_sent_file.xml"
     },
     {
-        "merged": "E:\\AndroidStudioWork\\git\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_alert_dialog.xml",
-        "source": "E:\\AndroidStudioWork\\git\\ImDemo\\easeui\\src\\main\\res\\layout\\ease_alert_dialog.xml"
+        "merged": "E:\\AndroidStudioWork\\git\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_received_message.xml",
+        "source": "E:\\AndroidStudioWork\\git\\ImDemo\\easeui\\src\\main\\res\\layout\\ease_row_received_message.xml"
     },
     {
         "merged": "E:\\AndroidStudioWork\\git\\ImDemo\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_emojicon.xml",
