@@ -7,7 +7,9 @@ import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Pair;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +27,7 @@ import com.hyphenate.EMConversationListener;
 import com.hyphenate.EMError;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
+import com.hyphenate.easeui.model.EaseAtMessageHelper;
 import com.hyphenate.easeui.ui.EaseBaseFragment;
 import com.hyphenate.easeui.ui.EaseConversationListFragment;
 import com.hyphenate.easeui.widget.EaseConversationList;
@@ -38,15 +41,16 @@ import java.util.Map;
 
 import zzh.cn.imdemo.R;
 import zzh.cn.imdemo.app.Constant;
+import zzh.cn.imdemo.db.InviteMessgeDao;
 import zzh.cn.imdemo.widget.AddPopWindow;
 
 /**
- * Created by Android on 2016/9/20.
+ *
  */
 public class ECConversationListFragment extends EaseConversationListFragment {
 
     /**
-     * conversation list fragment
+     * 会话列表fragment
      *
      */
 
@@ -116,7 +120,9 @@ public class ECConversationListFragment extends EaseConversationListFragment {
             });
         }
 
-        @Override
+
+
+    @Override
         protected void setUpView() {
             conversationList.addAll(loadConversationList());
             conversationListView.init(conversationList);
@@ -230,14 +236,14 @@ public class ECConversationListFragment extends EaseConversationListFragment {
         };
 
         /**
-         * connected to server
+         * 连接到服务器
          */
         protected void onConnectionConnected(){
             errorItemContainer.setVisibility(View.GONE);
         }
 
         /**
-         * disconnected with server
+         * 与服务器断开连接
          */
         protected void onConnectionDisconnected(){
             errorItemContainer.setVisibility(View.VISIBLE);
@@ -245,7 +251,7 @@ public class ECConversationListFragment extends EaseConversationListFragment {
 
 
         /**
-         * refresh ui
+         * 刷新ui
          */
         public void refresh() {
             if(!handler.hasMessages(MSG_REFRESH)){
@@ -254,7 +260,7 @@ public class ECConversationListFragment extends EaseConversationListFragment {
         }
 
         /**
-         * load conversation list
+         * 加载会话列表
          *
          * @return
         +    */
@@ -263,8 +269,7 @@ public class ECConversationListFragment extends EaseConversationListFragment {
             Map<String, EMConversation> conversations = EMClient.getInstance().chatManager().getAllConversations();
             List<Pair<Long, EMConversation>> sortList = new ArrayList<Pair<Long, EMConversation>>();
             /**
-             * lastMsgTime will change if there is new message during sorting
-             * so use synchronized to make sure timestamp of last message won't change.
+             * 如果有新的消息在分类期间，lastMsgTime会改变所以使用同步来确保最后的时间戳信息不会改变。
              */
             synchronized (conversations) {
                 for (EMConversation conversation : conversations.values()) {
@@ -287,7 +292,7 @@ public class ECConversationListFragment extends EaseConversationListFragment {
         }
 
         /**
-         * sort conversations according time stamp of last message
+         * 最后一条消息的谈话显示时间戳进行排序
          *
          * @param conversationList
          */
@@ -349,19 +354,22 @@ public class ECConversationListFragment extends EaseConversationListFragment {
 
         public interface EaseConversationListItemClickListener {
             /**
-             * click event for conversation list
+             * 会话列表，请单击事件
              * @param conversation -- clicked item
              */
             void onListItemClicked(EMConversation conversation);
         }
 
         /**
-         * set conversation list item click listener
+         * 会话列表项设置点击
          * @param listItemClickListener
          */
         public void setConversationListItemClickListener(EaseConversationListItemClickListener listItemClickListener){
             this.listItemClickListener = listItemClickListener;
+
+
         }
+
 
     }
 

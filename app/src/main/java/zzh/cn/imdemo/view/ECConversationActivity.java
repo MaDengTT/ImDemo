@@ -18,13 +18,13 @@ import zzh.cn.imdemo.app.DemoHelper;
 
 public class ECConversationActivity extends EaseBaseActivity {
 
-    ECConversationListFragment conversationListFragment;
+    ConversationListFragment conversationListFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ecconversation);
-        conversationListFragment = new ECConversationListFragment();
-        conversationListFragment.setConversationListItemClickListener(new ECConversationListFragment.EaseConversationListItemClickListener() {
+        conversationListFragment = new ConversationListFragment();
+        conversationListFragment.setConversationListItemClickListener(new ConversationListFragment.EaseConversationListItemClickListener() {
             @Override
             public void onListItemClicked(EMConversation conversation) {
                 Intent intent = new

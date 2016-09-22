@@ -42,7 +42,7 @@ import zzh.cn.imdemo.R;
 import zzh.cn.imdemo.app.Constant;
 import zzh.cn.imdemo.app.DemoHelper;
 import zzh.cn.imdemo.domain.RobotUser;
-import zzh.cn.imdemo.utils.EmojiconExampleGroupData;
+
 
 public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHelper{
 
@@ -120,7 +120,8 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragmentHe
             });
             titleBar.setRightImageResource(R.drawable.em_icon_account);
         }
-        ((EaseEmojiconMenu)inputMenu.getEmojiconMenu()).addEmojiconGroup(EmojiconExampleGroupData.getData());
+        //TODO 自定义表情添加
+//        ((EaseEmojiconMenu)inputMenu.getEmojiconMenu()).addEmojiconGroup(EmojiconExampleGroupData.getData());
         if(chatType == EaseConstant.CHATTYPE_GROUP){
             inputMenu.getPrimaryMenu().getEditText().addTextChangedListener(new TextWatcher() {
 
