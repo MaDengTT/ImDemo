@@ -9,6 +9,7 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.utils.EaseUserUtils;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
@@ -43,7 +44,14 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 	private TextView tvUsername;
 	private ProgressDialog dialog;
 	private RelativeLayout rlNickName;
-	
+
+	public static void startUserProfileActivity(Activity activity, String username) {
+		if (activity != null) {
+			Intent intent = new Intent(activity, UserProfileActivity.class);
+			intent.putExtra("username", username);
+			activity.startActivity(intent);
+		}
+	}
 	
 	
 	@Override
